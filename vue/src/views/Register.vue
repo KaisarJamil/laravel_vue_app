@@ -1,8 +1,12 @@
 <template>
 	<div>
-		<img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow" />
+		<img class="mx-auto h-12 w-auto" src="https://mlzi9dlhpjs7.i.optimole.com/s99jFrI-sTzt5oxL/w:1020/h:150/q:auto/https://www.enkaizen.com/wp-content/uploads/2021/03/logo-150-1.png" alt="Workflow" />
 		<h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Register</h2>
-		<router-link :to="{name: 'Login'}" class="font-medium text-indigo-600 hover:text-indigo-500"> login to your account </router-link>
+
+		<p class="mt-2 text-center text-md text-gray-600">
+			Or
+			<router-link :to="{name: 'Login'}" class="font-medium text-indigo-600 hover:text-indigo-500"> login to your account </router-link>
+		</p>
 	</div>
 	<form class="mt-8 space-y-6" @submit="register">
 		<input type="hidden" name="remember" value="true" />

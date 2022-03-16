@@ -9,21 +9,10 @@ const store = createStore({
             data: {},
             token: sessionStorage.getItem("TOKEN")
         },
-        tasks: [
-             
-            {
-                id: 112,
-                name: "Office assignement",
-                description: "Office assignement needs to be completed regarding the rest api project",
-                date: "2022-03-16 12:00:00"
-            },
-            {
-                id: 113,
-                name: "Office assignement 2",
-                description: "Office assignement needs to be completed regarding the rest api project",
-                date: "2022-03-16 12:00:00"
-            }
-        ],
+        tasks: {
+            loading: false,
+            data: []
+        },
         currentTask: {
             data: {},
             loading: false,
@@ -60,6 +49,7 @@ const store = createStore({
                 response = axiosClient
                     .put(`/task/${task.id}`, task)
                     .then((res) => {
+                        console.log(res)
                         commit('updateTask', res.data)
                         return res;
                     });
@@ -83,7 +73,22 @@ const store = createStore({
                 commit("setCurrentTaskLoading", false);
                 throw err;
               });
-          },
+        },
+        deleteTask({ dispatch }, id) {
+            return axiosClient.delete(`/task/${id}`).then((res) => {
+              dispatch('getTasks')
+              return res;
+            });
+        },
+        getTasks({ commit }) {
+            commit("setTasksLoading", true)
+            return axiosClient.get("/task")
+                .then((res) => {
+                    commit("setTasksLoading", false)
+                    commit("setTasks", res.data);
+                    return res;
+                })
+        },
     },
         mutations: {
             logout: (state) => {
@@ -109,8 +114,14 @@ const store = createStore({
             setCurrentTaskLoading: (state, loading) => {
                 state.currentTask.loading = loading;
             },
+            setTasksLoading: (state, loading) => {
+                state.tasks.loading = loading;
+            },
             setCurrentTask: (state, task) => {
                 state.currentTask.data = task.data;
+            },
+            setTasks: (state, tasks) => {
+                state.tasks.data = tasks.data;
             },
             
         },

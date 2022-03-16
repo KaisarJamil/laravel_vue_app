@@ -7,7 +7,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,9 +35,12 @@ class AuthController extends Controller
         ]);
 
         /** @var \App\Models\User $user */
+
+        $role = Role::where('name','User')->first();
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'role_id' => $role->id,
             'password' => bcrypt($data['password'])
         ]);
         $token = $user->createToken('main')->plainTextToken;

@@ -19,7 +19,7 @@ class TaskControler extends Controller
     public function index(Request $request)
     {
         $user= $request->user();
-        return TaskResource::collection(Task::where('user_id', $user->id)->paginate());
+        return TaskResource::collection(Task::where('user_id', $user->id)->with('user')->paginate());
     }
 
     /**

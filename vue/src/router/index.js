@@ -6,6 +6,7 @@ import Dashboard from "../views/Dashboard.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import Task from "../views/Task.vue";
+import TaskView from "../views/TaskView.vue";
 
 const routes = [
 
@@ -16,7 +17,9 @@ const routes = [
         meta: { requiresAuth: true },
         children: [
             { path: '/dashboard', name: 'Dashboard', component: Dashboard },
-            { path: '/task-lists', name: 'TaskList', component: Task }
+            { path: '/task-lists', name: 'TaskList', component: Task },
+            { path: '/tasks/create', name: 'TaskCreate', component: TaskView },
+            { path: '/tasks/:id', name: 'TaskView', component: TaskView }
         ]
     },
     

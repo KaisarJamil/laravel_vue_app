@@ -12,18 +12,22 @@ const store = createStore({
         tasks: [
              
             {
-                id: 1,
+                id: 112,
                 name: "Office assignement",
                 description: "Office assignement needs to be completed regarding the rest api project",
                 date: "2022-03-16 12:00:00"
             },
             {
-                id: 2,
+                id: 113,
                 name: "Office assignement 2",
                 description: "Office assignement needs to be completed regarding the rest api project",
                 date: "2022-03-16 12:00:00"
             }
-        ]
+        ],
+        currentTask: {
+            data: {},
+            loading: false,
+        },
         
     },
     getters: {},
@@ -50,6 +54,7 @@ const store = createStore({
                 })
         },
         saveTask({ commit }, task) {
+            // console.log(task);
             let response;
             if (task.id) {
                 response = axiosClient
@@ -65,6 +70,20 @@ const store = createStore({
                 })
             }
         },
+        getTask({ commit }, id) {
+            commit("setCurrentTaskLoading", true);
+            return axiosClient
+              .get(`/task/${id}`)
+              .then((res) => {
+                commit("setCurrentTask", res.data);
+                commit("setCurrentTaskLoading", false);
+                return res;
+              })
+              .catch((err) => {
+                commit("setCurrentTaskLoading", false);
+                throw err;
+              });
+          },
     },
         mutations: {
             logout: (state) => {
@@ -86,7 +105,13 @@ const store = createStore({
                     }
                     return t;
                 })
-            }
+            },
+            setCurrentTaskLoading: (state, loading) => {
+                state.currentTask.loading = loading;
+            },
+            setCurrentTask: (state, task) => {
+                state.currentTask.data = task.data;
+            },
             
         },
         modules: {}

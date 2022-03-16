@@ -38,7 +38,7 @@
 				</div>
 
 				<div class="px-0 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center">
-					<button class="bg-indigo-500 px-4 py-2 text-white font-bold rounded hover:bg-green-500 transition" type="submit">Create</button>
+					<button class="bg-indigo-500 px-4 py-2 text-white font-bold rounded hover:bg-green-500 transition" type="submit">Save</button>
 				</div>
 			</div>
 		</form>
@@ -57,12 +57,21 @@ const route = useRoute()
 // Create empty task
 let model = ref({
 	name: "",
-	description: null,
-	date: null,
+	description: "",
+	date: "",
 })
 
+watch(
+	() => store.state.currentTask.data,
+	(newVal, oldVal) => {
+		model.value = {
+			...JSON.parse(JSON.stringify(newVal)),
+		}
+	}
+)
+
 if (route.params.id) {
-	model.value = store.state.tasks.find((s) => s.id === parseInt(route.params.id))
+	store.dispatch("getTask", route.params.id)
 }
 
 function saveTask() {

@@ -33,7 +33,7 @@
 									</thead>
 									<tbody>
 										<tr v-for="(task, index) in tasks" :key="index" class="hover:bg-gray-100 focus-within:bg-gray-100" :class="index % 2 === 0 ? 'bg-white' : 'bg-gray-50'">
-											<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ index + 1 }}</td>
+											<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ task.id }}</td>
 											<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ task.name }}</td>
 											<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ task.description.length > 50 ? task.description.substring(0, 50) + "..." : task.description }}</td>
 											<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ task.date }}</td>

@@ -36,11 +36,12 @@ class AuthController extends Controller
 
         /** @var \App\Models\User $user */
 
-        $role = Role::where('name','User')->first();
+        // $role = Role::where('slug','user')->first();
+        
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'role_id' => $role->id,
+            // 'role_id' => $role->id,
             'password' => bcrypt($data['password'])
         ]);
         $token = $user->createToken('main')->plainTextToken;

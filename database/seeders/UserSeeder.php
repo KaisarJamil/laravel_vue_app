@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $adminRole = Role::where('name','Admin')->first();
+        $adminRole = Role::where('slug','Admin')->first();
         // Create admin
         User::updateOrCreate([
             'role_id' => $adminRole->id,
@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
         ]);
 
         // Create user
-        $userRole = Role::where('name','User')->first();
+        $userRole = Role::where('slug','User')->first();
         User::updateOrCreate([
             'role_id' => $userRole->id,
             'name' => 'User',

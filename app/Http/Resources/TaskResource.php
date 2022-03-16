@@ -19,7 +19,10 @@ class TaskResource extends JsonResource
             'name' => $this->name,
             'slug' => $this->slug,
             'description' => $this->description,
-            'date' => (new \DateTime($this->date))->format('Y-m-d'),  
+            'date' => (new \DateTime($this->date))->format('Y-m-d'), 
+            'user' => [
+                'name' => $this->user->name
+            ]
         ];
     }
 }

@@ -38,7 +38,7 @@
 											<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ task.name }}</td>
 											<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ task.description.length > 50 ? task.description.substring(0, 50) + "..." : task.description }}</td>
 											<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ task.date }}</td>
-											<!-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ task.user.name }}</td> -->
+											<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ task.user.name }}</td>
 											<td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
 												<div class="flex justify-start items-center space-x-2">
 													<router-link :to="{name: 'TaskView', params: {id: task.id}}">

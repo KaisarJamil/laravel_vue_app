@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Http\Resources\TaskResource;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 use App\Models\Task;
@@ -19,7 +20,12 @@ class TaskControler extends Controller
     public function index(Request $request)
     {
         $user= $request->user();
-        return TaskResource::collection(Task::where('user_id', $user->id)->with('user')->paginate());
+        $role = Role::where('id', $user->role_id)->first();
+        if($role->slug=='user') {
+            return TaskResource::collection(Task::where('user_id', $user->id)->paginate());
+        } else {
+        return TaskResource::collection(Task::paginate());
+        }
     }
 
     /**
@@ -44,9 +50,9 @@ class TaskControler extends Controller
     public function show(Task $task, Request $request)
     {
         $user = $request->user();
-        if ($user->id !== $task->user_id) {
-            return abort(403, 'Unauthorized action.');
-        }
+        // if ($user->id !== $task->user_id) {
+        //     return abort(403, 'Unauthorized action.');
+        // }
 
         return new TaskResource($task);
     }
@@ -74,9 +80,9 @@ class TaskControler extends Controller
     public function destroy(Task $task, Request $request)
     {
         $user = $request->user();
-        if ($user->id !== $task->user_id) {
-            return abort(403, 'Unauthorized action.');
-        }
+        // if ($user->id !== $task->user_id) {
+        //     return abort(403, 'Unauthorized action.');
+        // }
 
         $task->delete();
 

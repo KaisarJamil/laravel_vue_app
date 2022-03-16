@@ -49,7 +49,7 @@ const store = createStore({
                 response = axiosClient
                     .put(`/task/${task.id}`, task)
                     .then((res) => {
-                        console.log(res)
+                        // console.log(res)
                         commit('updateTask', res.data)
                         return res;
                     });

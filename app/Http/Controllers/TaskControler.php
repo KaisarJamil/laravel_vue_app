@@ -21,6 +21,8 @@ class TaskControler extends Controller
     {
         $user= $request->user();
         $role = Role::where('id', $user->role_id)->first();
+
+        //if user is not admin then s/he can not edit, delete others task list
         if($role->slug=='user') {
             return TaskResource::collection(Task::where('user_id', $user->id)->paginate());
         } else {

@@ -81,7 +81,8 @@ if (route.params.id) {
 }
 
 function saveTask() {
-	store.dispatch("saveTask", model.value).then(({data}) => {
+	store.dispatch("saveTask", model.value).then((data) => {
+		// console.log("checking", data),
 		router.push({
 			name: "TaskList",
 		})

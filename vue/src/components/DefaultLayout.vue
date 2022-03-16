@@ -13,17 +13,12 @@
 						</div>
 					</div>
 					<div class="hidden sm:ml-6 sm:flex sm:items-center">
-						<button type="button" class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-							<span class="sr-only">View notifications</span>
-							<BellIcon class="h-6 w-6" aria-hidden="true" />
-						</button>
-
 						<!-- Profile dropdown -->
 						<Menu as="div" class="ml-3 relative">
 							<div>
 								<MenuButton class="bg-white flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 									<span class="sr-only">Open user menu</span>
-									<img class="h-8 w-8 rounded-full" :src="user.imageUrl" alt="" />
+									<img class="h-8 w-8 rounded-full" src="https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png" alt="" />
 								</MenuButton>
 							</div>
 							<transition enter-active-class="transition ease-out duration-200" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
@@ -53,16 +48,12 @@
 				<div class="pt-4 pb-3 border-t border-gray-200">
 					<div class="flex items-center px-4">
 						<div class="flex-shrink-0">
-							<img class="h-10 w-10 rounded-full" :src="user.imageUrl" alt="" />
+							<img class="h-10 w-10 rounded-full" src="https://i.pinimg.com/originals/49/3f/a0/493fa0f13970ab3ef29375669f670451.jpg" alt="" />
 						</div>
 						<div class="ml-3">
 							<div class="text-base font-medium text-gray-800">{{ user.name }}</div>
 							<div class="text-sm font-medium text-gray-500">{{ user.email }}</div>
 						</div>
-						<button type="button" class="ml-auto bg-white flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-							<span class="sr-only">View notifications</span>
-							<BellIcon class="h-6 w-6" aria-hidden="true" />
-						</button>
 					</div>
 					<div class="mt-3 space-y-1">
 						<DisclosureButton as="a" @click="logout" class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 cursor-pointer">Sign out </DisclosureButton>

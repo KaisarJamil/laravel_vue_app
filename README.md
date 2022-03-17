@@ -14,5 +14,5 @@ Clone the project from github link - https://github.com/KaisarJamil/laravel_vue_
 - Run php artisan serve or valet open(for linux)
 
 **Frontend
-- Go to the
+- Go to the v
 
